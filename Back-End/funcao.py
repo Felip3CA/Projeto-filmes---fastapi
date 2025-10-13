@@ -21,6 +21,7 @@ def criar_tabela():
                 cursor.close()
                 conexao.close()
 
+
 criar_tabela()
 
 def criar_filme(titulo, genero, ano, avaliacao):
