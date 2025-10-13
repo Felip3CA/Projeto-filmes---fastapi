@@ -25,5 +25,5 @@ def catalogo():
     filmes = funcao.listar_movies()
     lista = []
     for filme in filmes:
-     lista.append({ "id": filme[0], "título": filme[1], "gênero": filme[2], "ano": filme[3], "avaliação": filme[4]})
+        lista.append({ "id": filme[0], "título": filme[1], "gênero": filme[2], "ano": filme[3], "avaliação": filme[4]})
     return {"filmes": lista}
