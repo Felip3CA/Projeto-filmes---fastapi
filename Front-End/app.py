@@ -9,7 +9,7 @@ st.set_page_config(page_title="Escolhi a Diversão", page_icon="🎭")
 st.title("🎨 Gerenciador de Filmes")
 
 #Menu lateral sidebar
-menu = st.sidebar.radio("Menu", ["Catálogo","Adicionar Filme", "Atualizar Filme"])
+menu = st.sidebar.radio("Menu", ["Catálogo","Adicionar Filme", "Atualizar Filme", "Deletar Filme"])
 
 if menu == "Catálogo":
     st.subheader("Todos os filmes 🎬")
@@ -57,3 +57,18 @@ elif menu == "Atualizar Filme":
                 st.success("Filme atualizado com sucesso!")
         else:
             st.error("Erro no seu código... lascado")
+
+    elif menu == "Deletar":
+        st.subheader("Deletar Filme")
+        titulo = st.text("Nome do filme que vai deletar")
+        if st.button("Deletar"):
+            dados = {"deletar": titulo}
+            response = requests.delete(f"{API_URL}/filmes{titulo}", params=dados)
+            if response.status_code == 200:
+                data = response.json
+                if "erro" in data:
+                    st.warning(data["erro"])
+                else:
+                    st.success("Filme deletado")
+            else:
+                st.error("Erro ao tentar deletar")

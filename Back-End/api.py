@@ -41,4 +41,13 @@ def atualizar_filme(id_filme:int,nova_avaliacao: float):
         return{"mensagem": "Filme atualizado com sucesso!"}
     else:
         return{"erro":"Filme não encontrado"}
+    
+@app.delete("/filmes/{titulo}")
+def deletar_filme(titulo):
+    filmes = funcao.listar_movies()
+    if filmes:
+        funcao.deletar_filme(titulo)
+        return{"mensagem": "Você deletou o filme com sucesso!"}
+    else:
+        return{"erro":"Filme não deletado"}
 
